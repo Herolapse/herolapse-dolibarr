@@ -602,17 +602,17 @@ if ($step == 2 && $datatoexport) {
 	print '<tr class="liste_titre">';
 	print '<td>'.$langs->trans("Object").'</td>';
 	print '<td>'.$langs->trans("ExportableFields").'</td>';
-	print '<td width="100" class="center">';
+	print '<td width="150" class="center">';
 	$morecss = '';
 	$moretitle = '';
 	if (!$user->hasRight('export', 'creer')) {
 		$morecss = ' disabled';
 		$moretitle = $langs->trans("NotAllowed");
 	}
-	print '<a class="liste_titre commonlink'.$morecss;
+	print '<a class="liste_titre'.$morecss;
 	print '" title="'.$langs->trans("All").($moretitle ? ' - '.$moretitle : '').'" href="'.$_SERVER["PHP_SELF"].'?step=2&datatoexport='.urlencode($datatoexport).'&action=selectfield&field=all&token='.newToken().'">'.$langs->trans("All")."</a>";
 	print ' / ';
-	print '<a class="liste_titre commonlink'.$morecss;
+	print '<a class="liste_titre'.$morecss;
 	print '" title="'.$langs->trans("None").($moretitle ? ' - '.$moretitle : '').'" href="'.$_SERVER["PHP_SELF"].'?step=2&datatoexport='.urlencode($datatoexport).'&action=unselectfield&field=all&token='.newToken().'">'.$langs->trans("None")."</a>";
 	print '</td>';
 	print '<td width="44%">'.$langs->trans("ExportedFields").'</td>';
