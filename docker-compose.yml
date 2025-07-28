@@ -1,0 +1,23 @@
+services:
+  kraken:
+    container_name: Herolapse-Dolibarr
+    build: .
+    user: "1000"
+    volumes:
+      - ./htdocs:/var/www/html
+      - ./documents:/var/www/documents
+    ports:
+      - 8082:80
+    restart: unless-stopped
+
+  db:
+    image: mariadb:latest
+    user: "1000"
+    environment:
+      MYSQL_DATABASE: db
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: root
+
+    volumes:
+      - ./data/dolibarr_db:/var/lib/mysql
