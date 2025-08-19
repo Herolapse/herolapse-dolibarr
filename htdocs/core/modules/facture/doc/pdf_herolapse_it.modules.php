@@ -305,14 +305,13 @@ class pdf_herolapse_it extends ModelePDFFactures
 				$dir = $conf->facture->multidir_output[$conf->entity];
 				$file = $dir . "/SPECIMEN.pdf";
 			} else {
-				$numero_fatt = str_replace(" ", "_", dol_sanitizeFileName($object->ref));
+				$numero_fatt = dol_sanitizeFileName($object->ref);
 				$data_fattura = dol_print_date($object->date, "%d-%m-%Y", false, $outputlangs);
-				$data_fattura = str_replace(" ", "_", $data_fattura);
 				$cliente = preg_replace("/[\.]/", "", $object->thirdparty->name); // rimuovi i punti
-				$cliente = str_replace(" ", "_", $cliente); // sostituisci gli spazi con _
 				$cliente = preg_replace('/[\/\\\\:\*\?"<>\|]/', "", $cliente); // rimuovi altri caratteri vietati
+				$cliente = str_replace(" ", "-", $cliente); // sostituisci gli spazi con trattini
 
-				$filename = "Fattura_{$numero_fatt}_del_{$data_fattura}_{$cliente}.pdf";
+				$filename = "Fattura-{$numero_fatt}_del_{$data_fattura}_{$cliente}.pdf";
 
 				$dir = $conf->facture->multidir_output[$object->entity] . "/" . $numero_fatt;
 				$file = $dir . "/" . $filename;
