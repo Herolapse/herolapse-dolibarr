@@ -5290,7 +5290,8 @@ if ($action == 'create') {
 
 	$morehtmlref = '<div class="refidno">';
 	// Ref invoice
-	if ($object->status == $object::STATUS_DRAFT && !$mysoc->isInEEC() && getDolGlobalString('INVOICE_ALLOW_FREE_REF')) {
+	// if ($object->status == $object::STATUS_DRAFT && !$mysoc->isInEEC() && getDolGlobalString('INVOICE_ALLOW_FREE_REF')) {
+	if ($object->status == $object::STATUS_DRAFT && getDolGlobalString('INVOICE_ALLOW_FREE_REF')) {
 		$morehtmlref .= $form->editfieldkey("Ref", 'ref', $object->ref, $object, (int) $usercancreate, 'string', '', 0, 1);
 		$morehtmlref .= $form->editfieldval("Ref", 'ref', $object->ref, $object, (int) $usercancreate, 'string', '', null, null, '', 1);
 		$morehtmlref .= '<br>';
