@@ -380,7 +380,7 @@ class pdf_herolapse_it extends ModelePDFFactures
 				$pdf->SetCreator("Dolibarr " . DOL_VERSION);
 				$pdf->SetAuthor($mysoc->name . ($user->id > 0 ? " - " . $outputlangs->convToOutputCharset($user->getFullName($outputlangs)) : ""));
 				$pdf->SetKeyWords(
-					$outputlangs->convToOutputCharset($object->ref) . " " . $outputlangs->transnoentities("PdfInvoiceTitle") . " " . $outputlangs->convToOutputCharset($object->thirdparty->name)
+					$outputlangs->convToOutputCharset($object->ref) . " " . $outputlangs->transnoentities("PdfInvoiceTitle") . " " . $outputlangs->convToOutputCharset($object->thirdparty->name),
 				);
 				if (getDolGlobalString("MAIN_DISABLE_PDF_COMPRESSION")) {
 					$pdf->SetCompression(false);
@@ -735,8 +735,8 @@ class pdf_herolapse_it extends ModelePDFFactures
 							if (isset($sub_options["titleshowtotalexludingvatonpdf"])) {
 								$pdf_sub_options["titleshowtotalexludingvatonpdf"] =
 									isset($pdf_sub_options["titleshowtotalexludingvatonpdf"]) && $pdf_sub_options["titleshowtotalexludingvatonpdf"] < $level
-									? $pdf_sub_options["titleshowtotalexludingvatonpdf"]
-									: $level;
+										? $pdf_sub_options["titleshowtotalexludingvatonpdf"]
+										: $level;
 							} elseif (isset($pdf_sub_options["titleshowtotalexludingvatonpdf"]) && abs($level) <= $pdf_sub_options["titleshowtotalexludingvatonpdf"]) {
 								unset($pdf_sub_options["titleshowtotalexludingvatonpdf"]);
 							}
@@ -1448,8 +1448,8 @@ class pdf_herolapse_it extends ModelePDFFactures
 			$pdf->SetXY($posxval, $posy);
 			$lib_condition_paiement =
 				$outputlangs->transnoentities("PaymentCondition" . $object->cond_reglement_code) != "PaymentCondition" . $object->cond_reglement_code
-				? $outputlangs->transnoentities("PaymentCondition" . $object->cond_reglement_code)
-				: $outputlangs->convToOutputCharset($object->cond_reglement_doc ? $object->cond_reglement_doc : $object->cond_reglement_label);
+					? $outputlangs->transnoentities("PaymentCondition" . $object->cond_reglement_code)
+					: $outputlangs->convToOutputCharset($object->cond_reglement_doc ? $object->cond_reglement_doc : $object->cond_reglement_label);
 			$lib_condition_paiement = str_replace('\n', "\n", $lib_condition_paiement);
 			$pdf->MultiCell($posxend - $posxval, 4, $lib_condition_paiement, 0, "L");
 
@@ -1503,8 +1503,8 @@ class pdf_herolapse_it extends ModelePDFFactures
 				$pdf->SetXY($posxval, $posy);
 				$lib_mode_reg =
 					$outputlangs->transnoentities("PaymentType" . $object->mode_reglement_code) != "PaymentType" . $object->mode_reglement_code
-					? $outputlangs->transnoentities("PaymentType" . $object->mode_reglement_code)
-					: $outputlangs->convToOutputCharset($object->mode_reglement);
+						? $outputlangs->transnoentities("PaymentType" . $object->mode_reglement_code)
+						: $outputlangs->convToOutputCharset($object->mode_reglement);
 
 				//#21654: add account number used for the debit
 				if ($object->mode_reglement_code == "PRE") {
@@ -1897,7 +1897,7 @@ class pdf_herolapse_it extends ModelePDFFactures
 			$col2x - $col1x,
 			$tab2_hl,
 			$outputlangs->transnoentities(!getDolGlobalString("MAIN_GENERATE_DOCUMENTS_WITHOUT_VAT") ? "TotalHT" : "Total") .
-			(is_object($outputlangsbis) ? " / " . $outputlangsbis->transnoentities(!getDolGlobalString("MAIN_GENERATE_DOCUMENTS_WITHOUT_VAT") ? "TotalHT" : "Total") : ""),
+				(is_object($outputlangsbis) ? " / " . $outputlangsbis->transnoentities(!getDolGlobalString("MAIN_GENERATE_DOCUMENTS_WITHOUT_VAT") ? "TotalHT" : "Total") : ""),
 			0,
 			"L",
 			true,
@@ -2285,13 +2285,13 @@ class pdf_herolapse_it extends ModelePDFFactures
 			if ($creditnoteamount) {
 				$labeltouse =
 					$outputlangs->transnoentities("CreditNotesOrExcessReceived") != "CreditNotesOrExcessReceived"
-					? $outputlangs->transnoentities("CreditNotesOrExcessReceived")
-					: $outputlangs->transnoentities("CreditNotes");
+						? $outputlangs->transnoentities("CreditNotesOrExcessReceived")
+						: $outputlangs->transnoentities("CreditNotes");
 				$labeltouse .= is_object($outputlangsbis)
 					? " / " .
-					($outputlangsbis->transnoentities("CreditNotesOrExcessReceived") != "CreditNotesOrExcessReceived"
-						? $outputlangsbis->transnoentities("CreditNotesOrExcessReceived")
-						: $outputlangsbis->transnoentities("CreditNotes"))
+						($outputlangsbis->transnoentities("CreditNotesOrExcessReceived") != "CreditNotesOrExcessReceived"
+							? $outputlangsbis->transnoentities("CreditNotesOrExcessReceived")
+							: $outputlangsbis->transnoentities("CreditNotes"))
 					: "";
 				$index++;
 				$pdf->SetXY($col1x, $tab2_top + $tab2_hl * $index);
