@@ -266,11 +266,11 @@ class pdf_herolapse_it extends ModelePDFPropales
 			} else {
 				$numero_prev = dol_sanitizeFileName($object->ref);
 				$data_preventivo = dol_print_date($object->date, "%d-%m-%Y", false, $outputlangs);
-				$cliente = preg_replace("/[\.]/", "", $object->thirdparty->name); // rimuovi i punti
-				$cliente = preg_replace('/[\/\\\\:\*\?"<>\|]/', "", $cliente); // rimuovi altri caratteri vietati
-				$cliente = str_replace(" ", "-", $cliente); // sostituisci gli spazi con trattini
+				$client_name = preg_replace("/[\.]/", "", $object->thirdparty->name); // rimuovi i punti
+				$client_name = preg_replace('/[\/\\\\:\*\?"<>\|]/', "", $client_name); // rimuovi altri caratteri vietati
+				$client_name = str_replace(" ", "-", $client_name); // sostituisci gli spazi con trattini
 
-				$filename = "Preventivo-{$numero_prev}_del_{$data_preventivo}_{$cliente}.pdf";
+				$filename = "Preventivo-{$numero_prev}_del_{$data_preventivo}_{$client_name}.pdf";
 
 				$dir = $conf->propal->multidir_output[$object->entity] . "/" . $numero_prev;
 				$file = $dir . "/" . $filename;
