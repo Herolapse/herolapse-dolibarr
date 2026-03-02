@@ -93,20 +93,5 @@ phpstan_custom.neon
 
 # ignore .htaccess files
 .htaccess
-/.run-phpstan
 
-# Mistral Vibe
-.vibe
-/.vibeignore
-
-# Claude Code
-.claude
-/.claudeignore
-
-# Agent workflow artifacts (specs/plans), not product documentation
-docs/superpowers/
-
-# Agent-managed git worktrees
-.worktrees/
-/cookies.txt
-/post_login.html
+data/
